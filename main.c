@@ -90,7 +90,7 @@ void show_digest (unsigned char dig[], int n) {
 void show_help(char *app) {
     int i, n;
 
-    printf("Tiny Windows Hashes Calculator v0.2.0 - #2020 @lifenjoiner\n");
+    printf("Tiny Windows Hashes Calculator v0.2.1 - @lifenjoiner\n");
     printf("Usage: %s <-opt> [...] <file|-t string>\n", app);
     printf("opt (case insensitive):\n");
 
