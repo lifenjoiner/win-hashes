@@ -19,14 +19,14 @@ typedef struct _ALG_MAP {
 
 #define ALGIDMAP(s,n) #s, CALG_ ## s, n
 ALG_MAP ALGs[] = {
-    ALGIDMAP(MD2, 16),
-    ALGIDMAP(MD4, 16),
-    ALGIDMAP(MD5, 16),
-    ALGIDMAP(SHA, 20),
-    ALGIDMAP(SHA1, 20),
-    ALGIDMAP(SHA_256, 32),
-    ALGIDMAP(SHA_384, 48),
-    ALGIDMAP(SHA_512, 64)
+    {ALGIDMAP(MD2, 16)},
+    {ALGIDMAP(MD4, 16)},
+    {ALGIDMAP(MD5, 16)},
+    {ALGIDMAP(SHA, 20)},
+    {ALGIDMAP(SHA1, 20)},
+    {ALGIDMAP(SHA_256, 32)},
+    {ALGIDMAP(SHA_384, 48)},
+    {ALGIDMAP(SHA_512, 64)}
 };
 #undef ALGIDMAP
 
@@ -105,7 +105,6 @@ int main(int argc, char **argv) {
     int i, n;
     ALG_ID id;
     char *task;
-    CRYPT_CTX ctx = {0};
     unsigned char *digest, *result;
     int len;
 

@@ -80,8 +80,8 @@ typedef struct _CRYPT_CTX {
 } CRYPT_CTX, *P_CRYPT_CTX;
 
 void hash_init(ALG_ID id, CRYPT_CTX *ctx);
-void hash_update(CRYPT_CTX *ctx, const unsigned char *data, unsigned int len);
-void * hash_final(CRYPT_CTX *ctx, unsigned char *digest);
-void * hash_buffer(ALG_ID id, const char *buffer, size_t len, unsigned char *digest);
+void hash_update(CRYPT_CTX *ctx, const void *data, unsigned int len);
+void * hash_final(CRYPT_CTX *ctx, void *digest);
+void * hash_buffer(ALG_ID id, const void *buffer, unsigned int len, void *digest);
 
 #endif

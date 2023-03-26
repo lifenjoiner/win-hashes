@@ -26,16 +26,16 @@ void hash_init(ALG_ID id, CRYPT_CTX *ctx) {
     }
 }
 
-void hash_update(CRYPT_CTX *ctx, const unsigned char *data, unsigned int len) {
-    CryptHashData(ctx->hHash, data, len, 0);
+void hash_update(CRYPT_CTX *ctx, const void *data, unsigned int len) {
+    CryptHashData(ctx->hHash, (const BYTE *)data, (DWORD)len, 0);
 }
 
-void * hash_final(CRYPT_CTX *ctx, unsigned char *digest) {
-    unsigned long length;
+void * hash_final(CRYPT_CTX *ctx, void *digest) {
+    DWORD length;
 
     // https://docs.microsoft.com/en-us/windows/win32/api/wincrypt/nf-wincrypt-cryptgethashparam
     if (CryptGetHashParam(ctx->hHash, HP_HASHVAL, NULL, &length, 0)) { // <-- finish and get result length
-        CryptGetHashParam(ctx->hHash, HP_HASHVAL, digest, &length, 0);
+        CryptGetHashParam(ctx->hHash, HP_HASHVAL, (BYTE *)digest, &length, 0);
     }
     if (ctx->hHash) CryptDestroyHash(ctx->hHash);
     if (ctx->hCryptProv) CryptReleaseContext(ctx->hCryptProv, 0);
@@ -44,7 +44,7 @@ void * hash_final(CRYPT_CTX *ctx, unsigned char *digest) {
 }
 
 
-void * hash_buffer(ALG_ID id, const char *buffer, size_t len, unsigned char *digest) {
+void * hash_buffer(ALG_ID id, const void *buffer, unsigned int len, void *digest) {
     CRYPT_CTX ctx;
 
     hash_init(id, &ctx);
